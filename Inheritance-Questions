@@ -1,0 +1,60 @@
+What is Diamond Problem ?
+The diamond problem occurs when two super classes of a class have a common base class.Generally Diamond problem occurs In Multiple Inheriatance
+where a class can inherit from more than one base classes.so derived class have two copies .This causes ambiguities
+
+E.g 
+     class BaseClass
+     {
+        public:
+              BaseClass(int x)
+              {
+                cout<<"BaseClass is called"<<endl;
+              }
+     };
+     class DerivedClass1:public BaseClass
+     {
+       public:
+            DerivedClass1(int x):BaseClass(x)
+            {
+                cout<<"DerivedClass1 is called"<<endl;
+            }
+     
+     };
+     class DerivedClass2:public BaseClass
+     {
+       public:
+            DerivedClass2(int x):BaseClass(x)
+            {
+                cout<<"DerivedClass2 is called"<<endl;
+            }
+     
+     };
+     
+     class FinalClass:public DerivedClass1,public DerivedClass2
+     {
+     public:
+        FinalClass(int x):DerivedClass1(x),DerivedClass2(x)
+            {
+                cout<<"FinalClass is called"<<endl;
+            }
+     
+     }
+int main()                                                        
+{
+   FinalClass ta(10);
+
+}
+output :  we have two copies of Base class in final class .To solve this problem use virtual key word
+BaseClass is called
+DerivedClass1 is called
+BaseClass is called
+DerivedClass2 is called
+FinalClass is called
+
+
+
+
+
+
+
+
